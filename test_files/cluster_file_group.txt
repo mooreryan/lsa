@@ -1,0 +1,3 @@
+bacteria~orf_1	bacteria~orf_1
+bacteria~orf_1	archaea~orf_1
+bacteria~orf_1	bacteria~orf_1

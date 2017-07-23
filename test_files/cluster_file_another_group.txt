@@ -1,0 +1,3 @@
+a~orf_1	a~orf_1
+a~orf_1	a~orf_1
+a~orf_1	b~orf_1
