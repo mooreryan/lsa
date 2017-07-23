@@ -64,10 +64,10 @@ module Lsa
 
       # START HERE write a new line for each label to each label file
       abort_unless doc2new_doc.has_key?(centroid_doc),
-                   "Missing #{centroid_doc} from doc2new_doc"
+                   "Missing #{centroid_doc} from #{doc2new_doc}"
 
       abort_unless doc2new_doc.has_key?(member_doc),
-                   "Missing #{member_doc} from doc2new_doc"
+                   "Missing #{member_doc} from #{doc2new_doc}"
 
       label2outf.keys.each do |label|
         new_centroid_doc = doc2new_doc[centroid_doc][label]
