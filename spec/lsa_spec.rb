@@ -24,12 +24,24 @@ RSpec.describe Lsa do
   let(:mapping_fname) {
     File.join test_file_dir, "mapping.txt"
   }
+  let(:mapping_with_bad_group_fname) {
+    File.join test_file_dir, "mapping_with_bad_group_name.txt"
+  }
 
   it "has a version number" do
     expect(Lsa::VERSION).not_to be nil
   end
 
   describe "#parse_mapping_file" do
+    context "when 'original' is used as a group name" do
+      it "raises an error" do
+        mmseqs_final_outf = "mmseqs_final2.txt"
+
+        expect { klass.parse_mapping_file mapping_with_bad_group_fname, mmseqs_final_outf }.
+          to raise_error AbortIf::Exit
+      end
+    end
+
     it "parses the mapping file" do
       mmseqs_final_outf = "mmseqs_final.txt"
 

@@ -4,15 +4,10 @@ require "abort_if"
 
 include AbortIf
 
-
-
-
 module Lsa
-
   def clean_str str
     str.strip.gsub(/[^\p{Alnum}_]+/, "_").gsub(/_+/, "_")
   end
-
 
   def parse_mapping_file mapping_fname, mmseqs_final_outf
     data_labels = []
@@ -20,9 +15,12 @@ module Lsa
     doc2new_doc = {}
     File.open(mapping_fname, "rt").each_line.with_index do |line, idx|
       if idx.zero?
-        curren_label, *data_labels = line.chomp.split("\t").map do |str|
+        current_label, *data_labels = line.chomp.split("\t").map do |str|
           clean_str str
         end
+
+        abort_if data_labels.any? { |label| label == "original" },
+                 "Illegal data label: 'original'. Please change it."
 
         abort_unless data_labels.uniq.count == data_labels.count,
                      "The data labels are not unique in #{mapping_fname}"
